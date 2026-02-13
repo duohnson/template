@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalogo %}
+    <!-- detale producto -->
+    <section class="section">
+        <div class="detalle-container">
+            <div class="detalle-card">
+                <div class="detalle-card-img">
+                    <div class="image-carousel">
+                        {% for imagen in producto.imagenes.all %}
+                            <img src="{{ imagen.imagen.url }}" alt="{{ producto.nombre }}" class="carousel-image {% if forloop.first %}active{% endif %}">
+                        {% empty %}
+                            <img src="{% static 'img/fresa.png' %}" alt="Sin imagen" class="carousel-image active">
+                        {% endfor %}
+                    </div>
+                    {% if producto.imagenes.all|length > 1 %}
+                    <button class="carousel-btn prev" onclick="changeImage(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="changeImage(1)">&#10095;</button>
+                    {% endif %}
+                </div>
+
+                <div class="detalle-card-content">
+                    <h1 class="detalle-card-title">{{ producto.nombre }}</h1>
+                    <p class="detalle-card-description">{{ producto.descripcion }}</p>
+                    <div class="detalle-card-price"><span>₡</span> {{ producto.precio }}</div>
+                    <div class="botones-container">
+                        <form method="post" action="{% url 'add_to_cart' producto.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-primary">Agregar al carrito</button>
+                        </form>
+                        <a class="btn-secondary" href="https://wa.me/50671276909?text=Hola,%20me%20interesa%20el%20producto:%20{{ producto.nombre }}" target="_blank" rel="noopener noreferrer">Comprar</a>
+                        <a class="btn-secondary" href="{% url 'catalogo' %}">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-image');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function changeImage(direction) {
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        if (totalImages > 0) {
+            showImage(0);
+        }
+    </script>
+{% endblock %}

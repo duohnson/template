@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalogo %}
+<!-- perfil -->
+<section class="section">
+    <div class="profile-card">
+        <h2 class="form-title">Perfil de usuario</h2>
+        <div class="profile-avatar">
+            <img src="{% if profile.foto_perfil %}{{ profile.foto_perfil.url }}{% else %}{% static 'img/fresa.png' %}{% endif %}" alt="Foto de perfil">
+        </div>
+        <div class="profile-info">
+            <p><strong>Usuario:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email|default:'No especificado' }}</p>
+            <p><strong>Fecha de registro:</strong> {{ user.date_joined|date:'d/m/Y' }}</p>
+        </div>
+        <form method="post" enctype="multipart/form-data" class="profile-form">
+            {% csrf_token %}
+            <label for="foto_perfil">Cambiar foto de perfil</label>
+            <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*">
+            <button type="submit" class="btn-primary">Actualizar foto</button>
+        </form>
+        <div class="profile-actions">
+            <a href="{% url 'logout' %}" class="btn-secondary">Cerrar sesión</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

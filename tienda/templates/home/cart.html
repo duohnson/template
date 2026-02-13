@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalogo %}
+<!-- carrito -->
+<section class="section">
+    <h1 class="section-title">Carrito de compras</h1>
+    <div class="cart-container">
+        {% if items %}
+        <div class="cart-items">
+            {% for item in items %}
+            <div class="cart-item">
+                <div class="cart-item-img">
+                    {% if item.producto.primera_imagen %}
+                    <img src="{{ item.producto.primera_imagen.imagen.url }}" alt="{{ item.producto.nombre }}">
+                    {% else %}
+                    <img src="{% static 'img/fresa.png' %}" alt="Sin imagen">
+                    {% endif %}
+                </div>
+                <div class="cart-item-details">
+                    <h3>{{ item.producto.nombre }}</h3>
+                    <p>{{ item.producto.descripcion }}</p>
+                    <p>Cantidad: {{ item.quantity }}</p>
+                    <p>Precio unitario: ₡{{ item.producto.precio }}</p>
+                    <p>Subtotal: ₡{{ item.subtotal }}</p>
+                </div>
+                <div class="cart-item-actions">
+                    <a href="{% url 'remove_from_cart' item.id %}" class="btn-secondary">Remover</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="cart-total">
+            <h2>Total: ₡{{ total }}</h2>
+            <a href="{{ whatsapp_url }}" target="_blank" class="btn-primary">Enviar por WhatsApp</a>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>Tu carrito está vacío.</p>
+            <a href="{% url 'catalogo' %}" class="btn-secondary">Ir al catálogo</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

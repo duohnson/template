@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalogo %}
+    <!-- titulo catalogo -->
+    <section class="section">
+        <h1 class="section-title">Catálogo</h1>
+        <p class="section-subtitle">Explora nuestros productos disponibles y selecciona tus favoritos.</p>
+    </section>
+
+    <!-- grilla prods -->
+    <section class="section">
+        {% if catalogo %}
+        <div class="grid-cards">
+            {% for producto in catalogo %}
+            <div class="card">
+                <div class="card-img">
+                    {% if producto.primera_imagen %}
+                        <img src="{{ producto.primera_imagen.imagen.url }}" alt="{{ producto.nombre }}">
+                    {% else %}
+                        <img src="{% static 'img/fresa.png' %}" alt="Sin imagen" class="img-placeholder">
+                    {% endif %}
+                </div>
+
+                <div class="card-title">{{ producto.nombre }}</div>
+                <div class="card-subtitle">{{ producto.descripcion }}</div>
+
+                <hr class="card-divider">
+
+                <div class="card-footer">
+                    <div class="card-price"><span>₡</span> {{ producto.precio }}</div>
+                    <a href="{% url 'detalle_producto' producto.id %}" class="card-link" aria-label="Ver detalle">
+                        <button class="card-btn" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="m397.78 316h-205.13a15 15 0 0 1 -14.65-11.67l-34.54-150.48a15 15 0 0 1 14.62-18.36h274.27a15 15 0 0 1 14.65 18.36l-34.6 150.48a15 15 0 0 1 -14.62 11.67zm-193.19-30h181.25l27.67-120.48h-236.6z"></path>
+                                <path d="m222 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path>
+                                <path d="m368.42 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path>
+                                <path d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z"></path>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>No hay productos disponibles por ahora.</p>
+        </div>
+        {% endif %}
+    </section>
+<!-- paginacion -->
+<nav aria-label="Paginación" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if catalogo.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1"><<</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ catalogo.previous_page_number }}"><</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link"><<</span></li>
+        <li class="page-item disabled"><span class="page-link"><</span></li>
+        {% endif %}
+
+        {% for num in catalogo.paginator.page_range %}
+        {% if catalogo.number == num %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% elif num > catalogo.number|add:'-3' and num < catalogo.number|add:'3' %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if catalogo.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ catalogo.next_page_number }}">></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ catalogo.paginator.num_pages }}">>></a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">></span></li>
+        <li class="page-item disabled"><span class="page-link">>></span></li>
+        {% endif %}
+    </ul>
+</nav>
+        {% endblock %}
