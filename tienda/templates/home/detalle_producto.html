@@ -11,7 +11,7 @@
                         {% for imagen in producto.imagenes.all %}
                             <img src="{{ imagen.imagen.url }}" alt="{{ producto.nombre }}" class="carousel-image {% if forloop.first %}active{% endif %}">
                         {% empty %}
-                            <img src="{% static 'img/fresa.png' %}" alt="Sin imagen" class="carousel-image active">
+                            <img src="{% static 'img/perfil.png' %}" alt="Sin imagen" class="carousel-image active">
                         {% endfor %}
                     </div>
                     {% if producto.imagenes.all|length > 1 %}
@@ -29,7 +29,7 @@
                             {% csrf_token %}
                             <button type="submit" class="btn-primary">Agregar al carrito</button>
                         </form>
-                        <a class="btn-secondary" href="https://wa.me/50671276909?text=Hola,%20me%20interesa%20el%20producto:%20{{ producto.nombre }}" target="_blank" rel="noopener noreferrer">Comprar</a>
+                        <a class="btn-secondary" href="https://wa.me/?text=Hola,%20me%20interesa%20el%20producto:%20{{ producto.nombre }}" target="_blank" rel="noopener noreferrer">Comprar</a>
                         <a class="btn-secondary" href="{% url 'catalogo' %}">Regresar</a>
                     </div>
                 </div>

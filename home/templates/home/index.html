@@ -6,7 +6,7 @@
     <section class="hero">
         <div class="hero-content">
             <p class="eyebrow">Bienvenido</p>
-            <h1>Strawberry Daki</h1>
+            <h1>duohnson</h1>
             <p class="hero-text">Detalles, accesorios y regalos con un estilo delicado y profesional.</p>
             <div class="hero-actions">
                 <a href="/catalogo/" class="btn-cta">Ver catálogo</a>
@@ -15,7 +15,7 @@
         </div>
         <div class="hero-media">
             <!-- logo -->
-            <img src="{{ MEDIA_URL }}productos/logo4x.png" alt="Logo Strawberry Daki" class="hero-logo" />
+            <img src="{{ MEDIA_URL }}productos/diseno.png" alt="Logo duohnson" class="hero-logo" />
         </div>
     </section>
 
@@ -30,7 +30,7 @@
                     {% if producto.primera_imagen %}
                         <img src="{{ producto.primera_imagen.imagen.url }}" alt="{{ producto.nombre }}">
                     {% else %}
-                        <img src="{% static 'img/fresa.png' %}" alt="Sin imagen" class="img-placeholder">
+                        <img src="{% static 'img/perfil.png' %}" alt="Sin imagen" class="img-placeholder">
                     {% endif %}
                 </div>
                 <div class="card-title">{{ producto.nombre }}</div>

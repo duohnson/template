@@ -41,7 +41,7 @@ def view_cart(request):
     for item in items:
         whatsapp_message += f"- {item.quantity} x {item.producto.nombre} (₡{item.subtotal})\n"
     whatsapp_message += f"Total: ₡{total}"
-    whatsapp_url = f"https://wa.me/50671276909?text={whatsapp_message.replace(' ', '%20').replace('\n', '%0A')}"
+    whatsapp_url = f"https://wa.me/?text={whatsapp_message.replace(' ', '%20').replace('\n', '%0A')}"
     context = {
         'cart': cart,
         'items': items,

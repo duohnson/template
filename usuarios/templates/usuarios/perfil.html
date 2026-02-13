@@ -7,7 +7,7 @@
     <div class="profile-card">
         <h2 class="form-title">Perfil de usuario</h2>
         <div class="profile-avatar">
-            <img src="{% if profile.foto_perfil %}{{ profile.foto_perfil.url }}{% else %}{% static 'img/fresa.png' %}{% endif %}" alt="Foto de perfil">
+            <img src="{% if profile.foto_perfil %}{{ profile.foto_perfil.url }}{% else %}{% static 'img/perfil.png' %}{% endif %}" alt="Foto de perfil">
         </div>
         <div class="profile-info">
             <p><strong>Usuario:</strong> {{ user.username }}</p>
