@@ -1,4 +1,4 @@
 By Daniel Uohnson - Type: Web basic.
 
 Readme:
-This is a basic yet solid digital catalog designed to showcase products for a virtual store in Costa Rica. The main goal was to create a lightweight, easy-to-manage tool that gets straight to the point: showing customers exactly what’s in stock.
+This is a basic but solid digital catalog designed to showcase products for an online store in Costa Rica. The main goal was to create a lightweight and easy-to-use tool that goes straight to the point: show customers exactly what is in stock and request purchase via WhatsApp.
