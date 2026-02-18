@@ -13,7 +13,7 @@ Plataforma web desarrollada en Django que funciona como catálogo digital para u
 
 ---
 
-<==| Tabla de contenido |==>
+## Tabla de contenido
 
 - [Arquitectura del proyecto](#arquitectura-del-proyecto)
 - [Funcionalidades](#funcionalidades)
@@ -31,7 +31,7 @@ Plataforma web desarrollada en Django que funciona como catálogo digital para u
 
 ---
 
-<==| Arquitectura del proyecto |==>
+## Arquitectura del proyecto
 
 El proyecto sigue una arquitectura modular basada en Django apps, donde cada dominio del negocio está encapsulado en su propia aplicación:
 
