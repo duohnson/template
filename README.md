@@ -44,17 +44,16 @@ Recuerda cambiar estas credenciales y la base de datos antes de desplegar en pro
 
 ## Arquitectura del proyecto
 
-El proyecto sigue una arquitectura modular basada en Django apps, donde cada dominio del negocio está encapsulado en su propia aplicación:
+
+El proyecto sigue una arquitectura modular basada en Django apps, donde cada dominio del negocio está encapsulado en su propia aplicación. Esto facilita el mantenimiento, la escalabilidad y la colaboración entre desarrolladores. Las apps principales son:
 
 ```
-proyecto/            → Configuración central (settings, urls, middleware, wsgi)
-home/                → Página principal y contacto
-tienda/              → Catálogo, detalle de producto, carrito de compras
-buscador/            → Motor de búsqueda por texto con paginación
-usuarios/            → Registro, login, logout, perfil con foto
+project/    → Configuración central (settings, urls, middleware, wsgi)
+home/       → Página principal y contacto
+shop/       → Catálogo, detalle de producto, carrito de compras
+search/     → Motor de búsqueda por texto con paginación
+users/      → Registro, login, logout, perfil con foto
 ```
-
-La comunicación entre apps se mantiene desacoplada: `home` consulta productos de `tienda` solo para mostrar ofertas en la landing, y `buscador` filtra contra el modelo `Producto` sin dependencias circulares.
 
 ---
 
@@ -130,7 +129,7 @@ La comunicación entre apps se mantiene desacoplada: `home` consulta productos d
 │   ├── models.py              # Profile (foto de perfil)
 │   ├── views.py               # Registro, login, logout, perfil
 │   ├── signals.py             # Auto-creación de perfil
-│   └── templates/usuarios/
+│   └── templates/users/
 │       ├── login.html
 │       ├── register.html
 │       └── profile.html
