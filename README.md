@@ -26,6 +26,7 @@
 - [Endpoints principales](#endpoints-principales)
 - [Despliegue en producción](#despliegue-en-producción)
 - [Capturas](#capturas)
+- [Despliegue y desarrollo con Docker](#despliegue-y-desarrollo-con-docker)
 
 ---
 
@@ -402,4 +403,34 @@ A continuación, se muestran algunas capturas de pantalla del sitio:
 ### Inicio de sesión
 ![Inicio de sesión](screenshots/Captura3.png)
 
+---
 
+## Despliegue y desarrollo con Docker
+
+Recomiendo y facilito el uso de Docker para ejecutar este proyecto en cualquier entorno (preferiblemente Linux). Docker elimina los problemas de configuración entre sistemas operativos, asegura la portabilidad, mejora la seguridad y permite que cualquier usuario pueda levantar el servidor en minutos, sin preocuparse por dependencias locales o versiones de Python.
+Es como si el proyecto viniera con su propio sistema operativo preconfigurado, listo para funcionar sin importar dónde se ejecute.
+
+### ¿Por qué usar Docker?
+- Garantiza que el entorno de desarrollo y producción sean idénticos.
+- Simplifica la instalación: solo necesitas Docker y Docker Compose.
+- Facilita la integración continua y el despliegue automatizado.
+- Aísla el proyecto de tu sistema operativo, evitando conflictos de dependencias.
+
+### Configuración rápida
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/duohnson/virtual-catalog.git
+   cd virtual-catalog
+   ```
+2. Copia el archivo de variables de entorno:
+   ```bash
+   cp .env.example .env
+   # Edita .env según tus credenciales y entorno
+   ```
+3. Levanta los servicios:
+   ```bash
+   docker-compose up --build
+   ```
+4. Accede a la aplicación en [http://localhost:8000](http://localhost:8000)
+
+(Leer la documentación en https://docs.docker.com/compose/gettingstarted/ para más detalles sobre crear el entorno.)
